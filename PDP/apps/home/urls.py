@@ -11,6 +11,10 @@ urlpatterns = [
     # The home page
     path('', views.index, name='home'),
 
+	path('tables/', views.infoDatabase, name='infoDatabase'), 
+	path('tables/create_events/', views.newEvent, name='newEvent'),
+	path('tables/<int:id>/file', views.evaluation_detail, name='evaluation_detail'),
+    path('dashboard/', views.dash_view, name='dash_view'),
     # Matches any html file
     re_path(r'^.*\.*', views.pages, name='pages'),
 

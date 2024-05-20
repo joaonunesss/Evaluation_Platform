@@ -7,6 +7,9 @@ Copyright (c) 2019 - present AppSeed.us
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm, SignUpForm
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import permission_required
+from django.contrib.auth.decorators import user_passes_test
 
 
 def login_view(request):
@@ -30,7 +33,7 @@ def login_view(request):
 
     return render(request, "accounts/login.html", {"form": form, "msg": msg})
 
-
+@user_passes_test(lambda u: u.is_superuser)
 def register_user(request):
     msg = None
     success = False
@@ -54,3 +57,8 @@ def register_user(request):
         form = SignUpForm()
 
     return render(request, "accounts/register.html", {"form": form, "msg": msg, "success": success})
+
+def logout_view(request):
+    logout(request)
+    return redirect('/')  # Certifique-se que 'home' é uma URL válida no seu projeto
+

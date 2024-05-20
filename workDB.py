@@ -49,9 +49,9 @@ for item in data2:
 for item1 in data1:
     for item2 in data2:
         if item1['NumColab'] == item2['NumColab']:
-            item1['Ano'] = item2['Ano']
-            item1['FaltaJust'] = item2['FaltaJust']
-            item1['FaltaInjust'] = item2["Faltas Injustificadas (Horas)"] if item2["Faltas Injustificadas (Horas)"] else 'N/A'
+            item1['Ano'] = item2.get('Ano', 0)
+            item1['FaltaJust'] = item2.get('FaltaJust', 0)
+            item1['FaltaInjust'] = item2.get("Faltas Injustificadas (Horas)", 0)
 
 with open('subject/03_combined_data.json', 'w') as f:
     json.dump(data1, f)

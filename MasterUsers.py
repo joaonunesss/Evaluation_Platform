@@ -1,4 +1,9 @@
 
+# python3 manage.py runserver
+# python3 manage.py migrate
+# python3 manage.py startapp myapp
+
+
 import os
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'MasterUsers.settings')
 
